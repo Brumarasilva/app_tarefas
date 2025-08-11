@@ -3,6 +3,8 @@ namespace app_tarefas.Models;
 
 public class Tipo
 {
+ public ICollection<Tarefa> Tarefas { get; set; } = new List<Tarefa>();
+
     [Key]
     public int Id { get; set; }
 
