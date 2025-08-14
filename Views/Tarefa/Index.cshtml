@@ -100,24 +100,39 @@
                             @Html.DisplayFor(modelItem => item.Tipo.Descricao)
                         </td>
 
-                      <td>
-    <form asp-action="ToggleConcluida" asp-route-id="@item.Id" method="post" style="display:inline;">
-        <button type="submit" class="btn btn-link p-0" title="Marcar como concluída">
-            @if (item.Concluida)
-            {
-                <i class="bi bi-check-circle-fill" style="font-size: 1.5rem; color: #43b97f;"></i>
-            }
-            else
-            {
-                <i class="bi bi-circle" style="font-size: 1.5rem; color: #fff;"></i>
-            }
-        </button>
-    </form>
-</td>
                         <td>
-                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                            <form asp-action="ToggleConcluida" asp-route-id="@item.Id" method="post"
+                                style="display:inline;">
+                                <button type="submit" class="btn btn-link p-0" title="Marcar como concluída">
+                                    @if (item.Concluida)
+                                    {
+                                        <i class="bi bi-check-circle-fill" style="font-size: 1.5rem; color: #43b97f;"></i>
+                                    }
+                                    else
+                                    {
+                                        <i class="bi bi-circle" style="font-size: 1.5rem; color: #fff;"></i>
+                                    }
+                                </button>
+                            </form>
+                        </td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="btn btn-link p-0" type="button" id="dropdownMenuButton-@item.Id" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-three-dots-vertical" style="font-size: 1.2rem; color: #333;"></i>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton-@item.Id">
+                                    <li>
+                                        <a class="dropdown-item" asp-action="Edit" asp-route-id="@item.Id">
+                                            <i class="bi bi-pencil me-2"></i> Editar
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item text-danger" asp-action="Delete" asp-route-id="@item.Id">
+                                            <i class="bi bi-x-lg me-2"></i> Excluir
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
                         </td>
                     </tr>
                 }
