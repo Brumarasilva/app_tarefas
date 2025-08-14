@@ -158,6 +158,19 @@ namespace app_tarefas.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ToggleConcluida(int id)
+        {
+            var tarefa = await _context.Tarefa.FindAsync(id);
+            if (tarefa != null)
+            {
+                tarefa.Concluida = !tarefa.Concluida;
+                await _context.SaveChangesAsync();
+            }
+            return RedirectToAction(nameof(Index));
+        }
+
         private bool TarefaExists(int id)
         {
             return _context.Tarefa.Any(e => e.Id == id);
